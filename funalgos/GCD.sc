@@ -3,12 +3,8 @@
 def gcd(x: Int, y: Int): Int = {
     val sorted = List(x, y).sorted
 
-    def calculate(a: Int, b: Int): Int = {
-         b match {
-            case 0 => a
-            case _ => calculate(b, a%b)
-        }
-    }
+    def calculate(a: Int, b: Int): Int = if(b == 0) a else calculate(b, a%b)
+    
     calculate(sorted(0), sorted(1))
 }
 
