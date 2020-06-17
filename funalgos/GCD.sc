@@ -1,18 +1,16 @@
 
-def sort(y: (Int, Int)): (Int, Int) = if(y._1 > y._2) y else {(y._2, y._1)}
+//Find the GCD using Euclidian algorithm (using division)
+def gcd(x: Int, y: Int): Int = {
+    val sorted = List(x, y).sorted
 
-def calculate(x: (Int, Int)): Int = {
-    val sorted = sort(x)
-
-    def check(a: Int, b: Int): Int = {
+    def calculate(a: Int, b: Int): Int = {
          b match {
             case 0 => a
-            case _ => check(b, a%b)
+            case _ => calculate(b, a%b)
         }
     }
-    check(sorted._1, sorted._2)
+    calculate(sorted(0), sorted(1))
 }
 
-assert(sort((12, 56)) == (56, 12))
-assert(calculate((12, 56)) == 4)
-assert(calculate((1071, 462)) == 21)
+assert(gcd(12, 56) == 4)
+assert(gcd(1071, 462) == 21)
